@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>POO em Javascript: Composição e Agregação</title>
+	
+
+	<script>
+		class Pessoa{
+			constructor(nome,nascimento,cpf){
+				this.nome = nome
+				this.nascimento = nascimento
+                this.endereco = new Endereco()
+			}
+		}
+
+		class PessoaFisica extends Pessoa{
+			constructor(nome,nascimento,cpf){
+				super(nome,nascimento)
+				this.cpf = cpf
+
+			}
+		}
+
+		class PessoaJuridica extends Pessoa{
+			constructor(nome,nascimento,cnpj){
+				super(nome,nascimento)
+				this.cnpj = cnpj
+
+			}
+		}
+
+		class Endereco{
+			constructor(rua,numero,bairro,cidade,uf){
+				this.rua = rua;
+				this.numero = numero;
+				this.bairro = bairro;
+				this.cidade = cidade;
+				this.uf = uf;
+			}
+
+			mostrar(){
+				return this.rua + ", nº " + this.numero + " - " + this.bairro +". " + this.cidade + "-" +this.uf; 
+			}
+		}
+
+		class Livro{
+			constructor(titulo){
+				this.titulo = titulo
+				this.autor = new PessoaFisica()
+				this.editora = new PessoaJuridica()
+			}
+		}
+
+		// No exemplo abaixo os objetos autor1 e editora1 existem independentes da existencia do objeto livro1. Já os endereços do autor e a editora dependem de suas existencias.
+		
+		const autor1 = new PessoaFisica("JAIME; Jose S.", "23/04/78","032.044.754-81");
+		const editora1 = new PessoaJuridica("Freitas", "23/04/78","002.341/26-002");
+        autor1.endereco = new Endereco("Avenida Ricardo Soares","06","Centro","Petrolina","PE");
+        editora1.endereco = new Endereco("Mauro de Melo", "03", "Cristina II", "Trindade", "GO");
+		const livro1 = new Livro("Curso de CSS");
+		livro1.autor = autor1;
+		livro1.editora = editora1;
+
+		console.log(livro1);
+		console.log(livro1.autor);
+		console.log(livro1.editora);
+		console.log(livro1.editora.endereco);
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

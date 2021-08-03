@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>POO em Javascript: Herança</title>
+	
+	<script>
+		
+		class Pessoa{
+			constructor(nome,nascimento,cpf){
+				this.nome = nome
+				this.nascimento = nascimento
+				this.cpf = cpf
+			}
+
+			saudar(){
+				return "Olá, meu nome é " + this.nome + ".";
+			}
+		}
+
+		
+
+		class Aluno extends Pessoa{
+			constructor(nome,nascimento,cpf,curso){
+				super(nome,nascimento,cpf)
+				this.curso = curso
+			}
+		}
+
+		class Professor extends Pessoa{
+			constructor(nome,nascimento,cpf,disciplina){
+				super(nome,nascimento,cpf)
+				this.disciplina = disciplina
+			}
+		}
+
+		const pessoa = new Pessoa("Inácio","26/03/2021","874.533.258-09")
+		console.log(pessoa.saudar());
+
+		const aluno = new Aluno("Antônio","16/07/1988","015.663.051-60","Javascript");
+		console.log(aluno.saudar() + " Sou Aluno do curso de " + aluno.curso);
+
+		const professor = new Professor("José","26/04/1976","015.563.281-34","HTML");
+		console.log(professor.saudar() + " Sou professor da discplina de " + professor.disciplina);
+
+	</script>
+</head>
+<body>
+
+
+</body>
+</html>

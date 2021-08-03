@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+
+    <script>
+        class Notebook {
+            constructor(marca, ram, hd){
+                this.marca = marca
+                this.ram = ram
+                this.hd = hd
+            }
+
+            setMarca(marca){
+                this.marca = marca
+            }
+
+            setRam(ram){
+                this.ram = ram
+            }
+
+            setHd(hd){
+                this.hd = hd
+            }
+
+            getMarca(){
+                return this.marca;
+            }
+
+            getRam(){
+                return this.ram;
+            }
+
+            getHd(){
+                return this.hd;
+            }
+
+        }
+
+        const notebook1 = new Notebook("Samsumg", "8 BG", "50 TB");
+        console.log(notebook1);
+        notebook1.setMarca("Dell");
+        console.log(notebook1);
+        notebook1.marca = "AOC";
+        console.log(notebook1);
+        console.log(notebook1.getHd());
+        console.log(notebook1.marca);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>POO em Javascript: Composição e Agregação</title>
+
+	<script>
+
+		class Endereco{
+			constructor(rua,numero,bairro,cidade,uf){
+				this.rua = rua;
+				this.numero = numero;
+				this.bairro = bairro;
+				this.cidade = cidade;
+				this.uf = uf;
+			}
+
+			mostrar(){
+				return this.rua + ", nº " + this.numero + " - " + this.bairro +". " + this.cidade + "-" +this.uf; 
+			}
+		}
+
+		class Cliente{
+			constructor(nome,nascimento,cpf){
+				this.nome = nome
+				this.nascimento = nascimento
+				this.cpf = cpf
+				this.endereco = new Endereco(); // o atributo endereço é um objeto da classe Endereco
+			}
+			
+			exibirDados(){
+				return "Nome: " + this.nome + ". CPF: " + this.cpf + " Data de nascimento: " + this.nascimento + " Endereço: " + this.endereco.rua + ", nº " + this.endereco.numero + " - " + this.endereco.bairro +". " + this.endereco.cidade + "-" + this.endereco.uf; 
+			}
+		}
+
+
+		// No exemplo abaixo o endereço do cliente depende da existencia do cliente. Assim, temos uma composição de classes.
+		
+		const cliente1 = new Cliente ("Inácio Paes Freitas da Silva","26/03/2022","874.533.258-09");
+		cliente1.endereco = new Endereco("Avenida Ricardo Soares","06","Centro","Petrolina","PE");
+		console.log(cliente1);
+		console.log(cliente1.endereco);
+
+		// No exemplo abaixo o endereço do cliente não depende da existencia do cliente. Nesse caso temos uma agregação que não faz  sentido, porque um endereço não precisa existir se não é parte de algum cliente.
+
+		const cliente2 = new Cliente ("Carlos Antônio Freitas da Silva","16/07/1988","874.533.258-09");
+		const endereco2 = new Endereco("Avenida Ricardo Soares","06","Centro","Petrolina","PE");
+		console.log(cliente2);
+		console.log(endereco2);
+		cliente2.endereco = endereco2;
+		console.log(cliente2.endereco);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
